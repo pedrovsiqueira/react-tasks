@@ -10,11 +10,11 @@ interface Task {
   isComplete: boolean;
 }
 
-export function TaskList() {
+export const TaskList = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
-  function handleCreateNewTask() {
+  const handleCreateNewTask = () => {
     const randomNumber = Math.floor(Math.random() * 10000);
     if (newTaskTitle.length === 0) return true;
 
@@ -25,9 +25,9 @@ export function TaskList() {
     };
 
     setTasks((prevState) => [...prevState, newTask]);
-  }
+  };
 
-  function handleToggleTaskCompletion(id: number) {
+  const handleToggleTaskCompletion = (id: number) => {
     const updatedTasks = tasks.map((task) =>
       task.id === id
         ? {
@@ -38,12 +38,12 @@ export function TaskList() {
     );
 
     setTasks(updatedTasks);
-  }
+  };
 
-  function handleRemoveTask(id: number) {
+  const handleRemoveTask = (id: number) => {
     const filteredTasks = tasks.filter((task) => task.id !== id);
     setTasks(filteredTasks);
-  }
+  };
 
   return (
     <section className="task-list container">
@@ -100,4 +100,4 @@ export function TaskList() {
       </main>
     </section>
   );
-}
+};
